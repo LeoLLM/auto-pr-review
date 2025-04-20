@@ -7,6 +7,10 @@ on:
 jobs:
   auto-assign:
     runs-on: ubuntu-latest
+    # --- 添加这部分 ---
+    permissions:
+      pull-requests: write # 授予修改 PR 的权限，包括添加审查者
+    # ------------------
     steps:
       - name: Auto-assign PR to repo owner
         uses: actions/github-script@v6
