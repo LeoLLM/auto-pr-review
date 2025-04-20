@@ -1,0 +1,20 @@
+name: Auto Assign PR Reviewer V2
+
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  assign-reviewer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Assign repo owner as reviewer
+        uses: hkusu/review-assign-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          assignees: ${{ github.repository_owner }}
+          reviewers: ${{ github.repository_owner }}
